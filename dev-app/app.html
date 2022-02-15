@@ -1,0 +1,16 @@
+<template>
+  <h1>Hello, this is the dev app for plugin fullcalendar-aurelia</h1>
+  <p>This dev app is bundled to scripts/ folder (ignored in .gitignore). If you commit the bundle files to github, this app can serve as a <a href="https://pages.github.com" target="_blank">github page</a>!</p>
+
+  <label>Weekends</label>
+  <input type="checkbox" checked.bind="calendarOptions.weekends">
+  <label>Week numbers</label>
+  <input type="checkbox" checked.bind="calendarOptions.weekNumbers">
+  <label>Selectable</label>
+  <input type="checkbox" checked.bind="calendarOptions.selectable">
+  <label>Select mirror</label>
+  <input type="checkbox" checked.bind="calendarOptions.selectMirror">
+  <label>Now indicator</label>
+  <input type="checkbox" checked.bind="calendarOptions.nowIndicator">
+  <full-calendar id.bind="some-id" options.bind="calendarOptions"></full-calendar>
+</template>
