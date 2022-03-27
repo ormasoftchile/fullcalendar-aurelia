@@ -7,7 +7,6 @@ import listPlugin from "@fullcalendar/list";
 //import scrollGridPlugin from "@fullcalendar/scrollgrid";
 
 export class App {
-  @observable weekends = true;
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin],
     headerToolbar: {
@@ -34,6 +33,9 @@ export class App {
         state: 'hh'
       },
     ],
+    select: ({ start, end }) => {
+      alert('')
+    }
     // select: this.handleDateSelect.bind(this),
     // eventClick: this.handleEventClick.bind(this),
     // eventsSet: this.handleEvents.bind(this)
@@ -45,11 +47,4 @@ export class App {
   };
 
   currentEvents: EventApi[] = [];
-
-  weekendsChanged() {
-    if (this.calendarOptions) {
-      this.calendarOptions = Object.assign({} , this.calendarOptions, { weekends: this.weekends });
-    }
-  }
-
 }

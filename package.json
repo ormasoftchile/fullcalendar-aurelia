@@ -1,10 +1,10 @@
 {
-  "name": "fullcalendar-aurelia",
-  "description": "An Aurelia plugin project.",
+  "name": "@cormazab/fullcalendar-aurelia",
+  "description": "An Aurelia plugin project for Fullcalendar.",
   "version": "0.1.0",
   "repository": {
-    "type": "???",
-    "url": "???"
+    "type": "git",
+    "url": "https://github.com/ormasoftchile/fullcalendar-aurelia.git"
   },
   "license": "UNLICENSED",
   "devDependencies": {
@@ -45,7 +45,7 @@
     "serve-static": "^1.14.2",
     "server-destroy": "^1.0.1",
     "socket.io": "^4.4.1",
-    "text": "requirejs/text",
+    "text": "github:requirejs/text",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.4"
   },
@@ -63,7 +63,7 @@
   },
   "main": "dist/commonjs/index.js",
   "module": "dist/native-modules/index.js",
-  "private": true,
+  "private": false,
   "files": [
     "dist",
     "src"
@@ -112,5 +112,9 @@
     "@fullcalendar/interaction": "^5.10.1",
     "@fullcalendar/list": "^5.10.1",
     "@fullcalendar/timegrid": "^5.10.1"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "Cristian Ormazabal"
 }

@@ -1,4 +1,4 @@
-import { bindable, BindingEngine, containerless, inject, view } from 'aurelia-framework';
+import { bindable, BindingEngine, containerless, inject, TaskQueue, view } from 'aurelia-framework';
 import { Calendar, CalendarOptions } from "@fullcalendar/core";
 
 /**
@@ -9,7 +9,7 @@ import { Calendar, CalendarOptions } from "@fullcalendar/core";
  *  
  */
 @view(`<template><div ref="calEl"></div></template>`)
-@inject(BindingEngine)
+@inject(BindingEngine, TaskQueue)
 export class FullCalendar {
   private calEl: HTMLElement;
   private calendar: Calendar;
@@ -22,6 +22,7 @@ export class FullCalendar {
 
   constructor(
     private bindingEngine: BindingEngine,
+    private taskQueue: TaskQueue,
   ) {
 
   }
@@ -31,14 +32,15 @@ export class FullCalendar {
    * @param propName 
    * @param newValue 
    * @param oldValue 
+   * If the property identified by propName is hard, then the calendar should be recreated
    */
   optionChangeHandler(propName, newValue, oldValue) {
     console.debug(propName, 'changed to:', newValue, 'from:', oldValue);
-    const hardProps = ['selectable'];
-    if (hardProps.includes(propName)) {
-      setTimeout(() => this.optionsChanged(this.options), 10);
-    }
-    else
+    // const hardProps = ['selectable'];
+    // if (hardProps.includes(propName)) {
+    //   this.taskQueue.queueMicroTask(() => this.optionsChanged(this.options))
+    // }
+    // else
       this.calendar.setOption(propName, newValue);
   }
 
@@ -55,7 +57,7 @@ export class FullCalendar {
           this.bindingEngine
             .propertyObserver(this.options, propName)
             .subscribe((newValue, oldValue) => {
-              this.optionChangeHandler({}, propName, newValue, oldValue)
+              this.optionChangeHandler(propName, newValue, oldValue)
             }));
       }
     }
